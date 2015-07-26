@@ -1,0 +1,47 @@
+﻿@model Nhunspell_Checker.Models.SpellChecker
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/afterthedeadline")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/spellcheck")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#divMessage").dialog({
+            bgiframe: true,
+            modal: true,
+            resizable: false,
+            draggable: false,
+            autoOpen: false,
+            open: function (event, ui) { $(".ui-dialog-titlebar-close").hide(); },
+            width: 400,
+            height: 'auto',
+            title: 'Message',
+            text: "Message",
+            buttons: {
+                Ok: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+</script>
+<div id="divMessage" title="divMessage">
+</div>
+<h2>
+    <u>Spell Checker</u></h2>
+<div style="margin-top: 2%;">
+    English Synopsis <a href="javascript:CheckEnglishSpelling()" id="checkEnglishLink">
+        <img src="../../Images/Spell_Check.png" border="0px"></a>
+    <br />
+    @Html.TextAreaFor(m => m.EnglishSynopsis, new { id = "txtEnglishSynopsis", @rows = 6, @onfocus = "setCounterValue('txtEnglishSynopsis','English Synopsis')", @onkeyup = "setCounterValue('txtEnglishSynopsis','English Synopsis')" })
+</div>
+<div style="margin-top: 2%;">
+    <b><span id="lblCounter" class="spanCounter"></span></b>
+</div>
+<div style="margin-top: 2%;">
+    Spanish Synopsis <a href="javascript:CheckSpanishSpelling()" id="checkSpanishLink">
+        <img src="../../Images/Spell_Check.png" border="0px"></a>
+    <br />
+    @Html.TextAreaFor(m => m.SpanishSynopsis, new { id = "txtSpanishSynopsis", @rows = 6, @onfocus = "setCounterValue('txtSpanishSynopsis','Spanish Synopsis')", @onkeyup = "setCounterValue('txtSpanishSynopsis','Spanish Synopsis')" })
+</div>
